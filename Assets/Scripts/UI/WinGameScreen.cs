@@ -16,7 +16,8 @@ public class WinGameScreen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        winText.text = "!! Player " + GameManager.instance.activePlayers[GameManager.instance.playerNumber + 1] + " venceu a Partida !!";
+        winText.text = "!! Player " + (GameManager.instance.playerNumber + 1) + " venceu a Partida !!";
+        playerImage.sprite = GameManager.instance.activePlayers[GameManager.instance.playerNumber].GetComponent<SpriteRenderer>().sprite;
     }
 
     // Update is called once per frame
