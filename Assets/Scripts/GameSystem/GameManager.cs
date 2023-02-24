@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Winning Game")] 
     public int pointsToWin;
+    private bool gameWin;
+    public string gameWinScene;
 
     private List<int> roundWins = new List<int>();
 
@@ -88,25 +90,37 @@ public class GameManager : MonoBehaviour
     public void GoToNextArena()
     {
         //SceneManager.LoadScene(arenaName[Random.Range(0, arenaName.Length)]);
-
-        if (arenaList.Count == 0)
+        if (!gameWin)
         {
-            List<string> levelList = new List<string>();
-            levelList.AddRange(arenaName);
-
-            for (int i = 0; i < arenaName.Length; i++)
+            if (arenaList.Count == 0)
             {
-                int select = Random.Range(0, levelList.Count);
-                
-                arenaList.Add(levelList[select]);
-                levelList.RemoveAt(select);
-            }
-        }
-        
-        string levelToLoad = arenaList[0];
-        arenaList.RemoveAt(0);
+                List<string> levelList = new List<string>();
+                levelList.AddRange(arenaName);
 
-        SceneManager.LoadScene(levelToLoad);
+                for (int i = 0; i < arenaName.Length; i++)
+                {
+                    int select = Random.Range(0, levelList.Count);
+
+                    arenaList.Add(levelList[select]);
+                    levelList.RemoveAt(select);
+                }
+            }
+
+            string levelToLoad = arenaList[0];
+            arenaList.RemoveAt(0);
+
+            SceneManager.LoadScene(levelToLoad);
+        }
+        else
+        {
+            foreach (PlayerController player in activePlayers)
+            {
+                player.gameObject.SetActive(false);
+                player.GetComponent<PlayerHealthController>().FillHealth();
+            }
+
+            SceneManager.LoadScene(gameWinScene);
+        }
     }
 
     public void StartingRound()
@@ -115,7 +129,9 @@ public class GameManager : MonoBehaviour
         foreach (PlayerController player in activePlayers)
         {
             roundWins.Add(0);
-        }   
+        }
+
+        gameWin = false;
         
         GoToNextArena();
     }
@@ -123,6 +139,13 @@ public class GameManager : MonoBehaviour
     public void AddWinningRound()
     {
         if (CheckActivePlayers() == 1)
+        {
             roundWins[playerNumber]++;
+
+            if (roundWins[playerNumber] >= pointsToWin)
+            {
+                gameWin = true;
+            }
+        }
     }
 }
