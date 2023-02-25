@@ -560,6 +560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  anim: {fileID: 0}
   moveSpeed: 10
   jumpForce: 21
   groundCheck: {fileID: 932201644609973601}
@@ -589,7 +590,7 @@ MonoBehaviour:
   heartFull: {fileID: 7642980859614939925, guid: adcb5fae9aa0a804c860037bd1c6ff1c, type: 3}
   heartEmpty: {fileID: -174804484191063705, guid: adcb5fae9aa0a804c860037bd1c6ff1c, type: 3}
   healthTransform: {fileID: 1215353013}
-  invincibleTime: 5
+  invincibleTime: 2
   flashTime: 0.1
 --- !u!212 &932201643211267884
 SpriteRenderer:

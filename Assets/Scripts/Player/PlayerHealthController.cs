@@ -84,7 +84,10 @@ public class PlayerHealthController : MonoBehaviour
                 sprRenderer[2].sprite = heartEmpty;
                 gameObject.SetActive(false);
                 break;
-            
+                
+            default:
+                gameObject.SetActive(false);
+                break;
         }
     }
 
