@@ -14117,7 +14117,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4208608270057216403, guid: 9bb7f1ef19d1bb64e876ad8ef2f58cec, type: 3}
       propertyPath: pointsToWin
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4208608270057216403, guid: 9bb7f1ef19d1bb64e876ad8ef2f58cec, type: 3}
       propertyPath: gameWinScene
